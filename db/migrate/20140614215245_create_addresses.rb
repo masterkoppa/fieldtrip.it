@@ -1,17 +1,17 @@
 class CreateAddresses < ActiveRecord::Migration
   def change
     create_table :addresses do |t|
-      t.string :street
-      t.string :street2
+      t.string :line1
+      t.string :line2
       t.string :city
       t.string :state
-      t.string :country
-      t.integer :zip_code
+      t.string :zip
+      t.integer :addressable_id
+      t.string :addressable_type
 
-      t.belongs_to :companies
-      t.belongs_to :events
-      t.belongs_to :field_trips
       t.timestamps
     end
+
+    add_index :addresses, [:addressable_type, :addressable_id], :unique => true
   end
 end
