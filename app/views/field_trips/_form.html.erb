@@ -1,0 +1,17 @@
+<%= form_for(@field_trip) do |f| %>
+  <% if @field_trip.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@field_trip.errors.count, "error") %> prohibited this field_trip from being saved:</h2>
+
+      <ul>
+      <% @field_trip.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
