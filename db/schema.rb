@@ -14,18 +14,18 @@
 ActiveRecord::Schema.define(version: 20140614223314) do
 
   create_table "addresses", force: true do |t|
-    t.string   "street"
-    t.string   "street2"
+    t.string   "line1"
+    t.string   "line2"
     t.string   "city"
     t.string   "state"
-    t.string   "country"
-    t.integer  "zip_code"
-    t.integer  "companies_id"
-    t.integer  "events_id"
-    t.integer  "field_trips_id"
+    t.string   "zip"
+    t.integer  "addressable_id"
+    t.string   "addressable_type"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "addresses", ["addressable_type", "addressable_id"], name: "index_addresses_on_addressable_type_and_addressable_id", unique: true
 
   create_table "availabilities", force: true do |t|
     t.time     "start"
