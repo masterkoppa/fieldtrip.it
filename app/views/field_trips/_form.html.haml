@@ -13,6 +13,18 @@
   .form-group
     = f.label :description
     = f.text_area :description, class: 'form-control'
-    = f.hidden_field :company_id, current_employee.company_id
+  .form-group.container-fluid
+    .row
+      .col-md-6
+        .form-group
+          = f.label :start_time
+          %br
+          = f.datetime_select :start_time, class: 'form-control'
+      .col-md-6
+        .form-group
+          = f.label :end_time
+          %br
+          = f.datetime_select :end_time, class: 'form-control'
+    = f.hidden_field :company_id, :value => current_employee.company_id
   .actions
     = f.submit "Next - Events", class: 'pull-right'

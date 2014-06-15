@@ -29,3 +29,7 @@ body { padding-top: 50px; }
 // And finally bootswatch style itself
 @import "bootswatch/yeti/bootswatch";
 
+.hidden-form{
+  display: none;
+}
+

@@ -1,4 +1,42 @@
 %p You don't have any events yet
+- @events.each do |event|
+  = event
+%button.btn.btn-success#create_event{'data-toggle' => 'modal', 'data-target' => '#newEvent'}
+  Add new event
+
+.modal.fade#newEvent{:tabindex => -1, :role => :dialog, 'aria-labelledby' => 'modalTitle', 'aria-hidden' => true}
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button.close{:type => :button, 'data-dismiss' => :modal, 'aria-hidden' => :true}
+          & &times;
+        %h4.modal-title#modalTitle Create New Event
+      .modal-body
+        #event_form
+          = render partial: 'events/form', locals: {event: Event.new}
+          .type-selector
+            .dropdown
+              %a.dropdown-toggle#type_label{:href => '#', 'data-toggle' => 'dropdown'}
+                Event Type
+                %b.caret
+              %ul.dropdown-menu{'aria-labeled-by' => 'type_label', :role => :menu}
+                %li
+                  %a{:href => '#restaurant_form', :tabindex => -1, 'data-toggle' => 'tab'}
+                    Restaurant
+                %li
+                  %a{:href => '#other_form', :tabindex => -1, 'data-toggle' => 'tab'}
+                    Other Event
+          %hr
+          .tab-content
+            #other_form.tab-pane.fade
+              Other forms
+            #restaurant_form.tab-pane.fade
+              = render partial: 'event_types/restaurant_form', locals: {restaurant: Restaurant.new}
+      .modal-footer
+        %button.btn.btn-default{:type => :button, 'data-dismiss' => 'modal'} Close
+        %button.btn.btn-primary{:type => :button}
+          Save
+
 = link_to 'Edit', edit_field_trip_path(@field_trip)
 |
 \#{link_to 'Back', field_trips_path}

@@ -11,6 +11,7 @@ class FieldTripsController < ApplicationController
   # GET /field_trips/1
   # GET /field_trips/1.json
   def show
+    @events = @field_trip.events
   end
 
   # GET /field_trips/new

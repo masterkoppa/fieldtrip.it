@@ -5,3 +5,4 @@ require File.expand_path('../application', __FILE__)
 Rails.application.initialize!
 
 EMPLOYEE_ROLES = ["Engineer", "Manager", "Product", "Sales", "Support", "Marketing", "Growth"]
+EVENT_TYPES = [Restaurant]
