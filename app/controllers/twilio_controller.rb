@@ -20,6 +20,7 @@ class TwilioController < ApplicationController
 
   def confirm
     get_employee
+    puts "*"*10000
     events = @employee.current_trip.events
     body = params['Body']
     if body =~ /0.{0,1}/
