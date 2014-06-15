@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140615205737) do
+ActiveRecord::Schema.define(version: 20140615214956) do
 
   create_table "addresses", force: true do |t|
     t.string   "line1"
@@ -94,6 +94,7 @@ ActiveRecord::Schema.define(version: 20140615205737) do
   create_table "employees_field_trips", force: true do |t|
     t.integer "employee_id"
     t.integer "field_trip_id"
+    t.boolean "attending"
   end
 
   create_table "events", force: true do |t|
