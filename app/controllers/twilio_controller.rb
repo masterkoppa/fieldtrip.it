@@ -2,7 +2,7 @@ class TwilioController < ApplicationController
 
   def dispatch(field_trip)
     events = []
-    client = Twilio::REST::Client.new(ENV["TWILIO_CONFIG['sid']"], ENV["TWILIO_CONFIG['token']"])
+    client = Twilio::REST::Client.new(ENV['TWILIO_SID'], ENV['TWILIO_TOKEN'])
 
     events << "0. I'm Staying in"
     field_trip.events.each_with_index do |event, index|
@@ -12,7 +12,7 @@ class TwilioController < ApplicationController
 
     field_trip.employees.each do |employee|
       client.account.sms.messages.create(
-        from: TWILIO_CONFIG['from'],
+        from: ENV['TWILIO_FROM'],
         to:   employee.phone,
         body: "Today's options (reply with number of your preference)\n #{events}")
     end
