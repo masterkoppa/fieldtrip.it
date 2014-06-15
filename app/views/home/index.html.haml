@@ -15,14 +15,6 @@
             %td= link_to(field_trip.name, new_field_trip_path)
             %td= field_trip.start_time
             %td
-              - if field_trip.attending?(current_employee)
-                %i.fa.fa-check
-                Going
-              - elsif field_trip.unconfirmed?(current_employee)
-                %i.fa.fa-question
-                Don't know
-              - else
-                %i.fa.fa-times
-                Don't know
+              Don't know what to do
   -else
     %h4.text-center No fieldtrips planned yet
