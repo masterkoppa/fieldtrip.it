@@ -1,7 +1,7 @@
 class Employee < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable,
+  devise :invitable, :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
   validate :role_is_a_valid_role
@@ -11,6 +11,10 @@ class Employee < ActiveRecord::Base
 
   def admin? 
     admin
+  end
+
+  def accepted_invite?
+    encrypted_password.present?
   end
 
   def role_is_a_valid_role
