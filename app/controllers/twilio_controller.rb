@@ -12,8 +12,8 @@ class TwilioController < ApplicationController
 
     employees.each do |employee|
       client.account.sms.messages.create(
-        from: TWILIO_CONFIG['from']
-        to: employee.phone
+        from: TWILIO_CONFIG['from'],
+        to:   employee.phone,
         body: "Today's options (reply with number of your preference)\n #{events}")
     end
   end
@@ -36,4 +36,5 @@ class TwilioController < ApplicationController
       head :not_found
     end
   end
+
 end
