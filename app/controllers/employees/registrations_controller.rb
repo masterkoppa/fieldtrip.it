@@ -12,6 +12,8 @@ class Employees::RegistrationsController < Devise::RegistrationsController
     if @company.valid? && @address.valid?
       super
       if resource.valid?
+          resource.admin = true
+          resource.save!
           @company.address = @address
           @company.employees << resource
           @company.save
