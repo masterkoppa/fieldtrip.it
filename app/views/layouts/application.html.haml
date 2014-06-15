@@ -6,6 +6,18 @@
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
   %body
-    %p.notice= notice
-    %p.alert= alert
+    - if !notice.nil?
+      %p.alert.alert-info= notice
+    -if !alert.nil?
+      %p.alert.alert-warning= alert
+    %nav.navbar.navbar-default.navbar.navbar-fixed-top{:role => :navigation}
+      .container-fluid
+        .navbar-header
+          %a.navbar-brand
+            Fieldtrip.it
+        - if employee_signed_in?
+          %ul.nav.navbar-nav.navbar-right
+            %li
+              %a= current_employee.email
+            %li= link_to('Sign Out', destroy_employee_session_path, :method => :delete)
     = yield
