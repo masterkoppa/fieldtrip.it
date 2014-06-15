@@ -1,0 +1,23 @@
+- if title
+  %h4= title
+= parent_form.fields_for @address, url: {action: "create"}, html: {class: "address_form"} do |ff|
+  %div
+    = ff.label :line1
+    %br/
+    = ff.text_field :line1
+  %div
+    = ff.label :line2
+    %br/
+    = ff.text_field :line2
+  %div
+    = ff.label :city
+    %br/
+    = ff.text_field :city
+  %div
+    = ff.label :state
+    %br/
+    = ff.text_field :state
+  %div
+    = ff.label :zip
+    %br/
+    = ff.text_field :zip

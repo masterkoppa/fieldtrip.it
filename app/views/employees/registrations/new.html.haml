@@ -36,27 +36,11 @@
         .form-group
           = ff.label :phone
           = ff.text_field :phone, class: 'form-control'
-    
-        %h4 Company Address
-        = ff.fields_for @address, url: {action: "create"}, html: {class: "address_form"} do |fff|
-          .form-group
-            = fff.label :line1
-            = fff.text_field :line1, class: 'form-control'
-          .form-group
-            = fff.label :line2
-            = fff.text_field :line2, class: 'form-control'
-          .form-group
-            = fff.label :city
-            = fff.text_field :city, class: 'form-control'
-          .form-group
-            = fff.label :state
-            = fff.text_field :state, class: 'form-control'
-          .form-group
-            = fff.label :zip
-            = fff.text_field :zip, class: 'form-control'
-  %br
+
+        = render partial: 'shared/address_fields', locals: {title: "Company Address", parent_form: ff}    
   %div= f.submit "Sign up", class: 'btn btn-primary pull-left col-xs-12 col-md-2'
 %br
 %br
 %br
+
 = render "employees/shared/links"
