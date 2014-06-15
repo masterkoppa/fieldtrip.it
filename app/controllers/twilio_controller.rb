@@ -22,7 +22,7 @@ class TwilioController < ApplicationController
     get_employee
     events = @employee.current_trip.events
     body = params['Body']
-    if body ~= /0.{0,1}/
+    if body =~ /0.{0,1}/
       @employee.not_attending!(@employee.current_trip)
     elsif body.to_i < events.size
       @employee.prefer(events[body.to_i])
