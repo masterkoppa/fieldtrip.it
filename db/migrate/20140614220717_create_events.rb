@@ -5,7 +5,7 @@ class CreateEvents < ActiveRecord::Migration
       t.string :description
       t.integer :capacity
 
-      t.belongs_to :field_trips
+      t.belongs_to :field_trip
 
       t.string :type
       t.integer :type_id

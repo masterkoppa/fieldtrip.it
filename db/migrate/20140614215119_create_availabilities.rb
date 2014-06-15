@@ -4,7 +4,7 @@ class CreateAvailabilities < ActiveRecord::Migration
       t.time :start
       t.time :end
 
-      t.belongs_to :employees
+      t.belongs_to :employee
       t.timestamps
     end
   end

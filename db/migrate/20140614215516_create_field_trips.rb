@@ -6,7 +6,7 @@ class CreateFieldTrips < ActiveRecord::Migration
       t.time :start_time
       t.time :end_time
 
-      t.belongs_to :companies
+      t.belongs_to :company
 
       t.timestamps
     end
