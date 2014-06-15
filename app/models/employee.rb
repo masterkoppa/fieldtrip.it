@@ -8,6 +8,7 @@ class Employee < ActiveRecord::Base
   belongs_to :company
   has_many :events
   has_many :field_trips
+  has_many :employee_preferences
 
   def admin? 
     admin
@@ -17,6 +18,19 @@ class Employee < ActiveRecord::Base
     encrypted_password.present?
   end
 
+  def current_trip
+    field_trips.last
+  end
+
+  def not_attending!(field_trip)
+    employee_field_trips.find {|trip| trip.field_trip == field_trip}.attending = false
+  end
+
+  def prefer(event_id)
+    employee_preferences << EmployeePreference.create(employee_id: id, event_id: event_id, preference: true)
+  end
+
+  # validations
   def role_is_a_valid_role
     unless role.in? EMPLOYEE_ROLES
       errors.add(:role, "Role must be a valid role.")
