@@ -1,6 +1,20 @@
-%p You don't have any events yet
-- @events.each do |event|
-  = event
+%h2= "#{@field_trip.name} Event Planning"
+.well
+  - if @events.empty?
+    %p You don't have any events added yet, go ahead and create some!
+  - else
+    %table.table.table-hover
+      %thead
+        %tr
+          %th Name
+          %th Description
+          %th Participation
+      %tbody
+        - @events.each do |event|
+          %tr
+            %td= event.name
+            %td= event.description
+            %td Am I going?
 %button.btn.btn-success#create_event{'data-toggle' => 'modal', 'data-target' => '#newEvent'}
   Add new event
 
