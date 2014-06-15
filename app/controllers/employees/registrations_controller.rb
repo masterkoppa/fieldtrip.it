@@ -7,7 +7,6 @@ class Employees::RegistrationsController < Devise::RegistrationsController
   end
 
   def create
-    asdf
     @address = Address.new(address_params)
     @company = Company.new(company_params)
     if @company.valid? && @address.valid?
