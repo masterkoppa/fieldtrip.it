@@ -7,9 +7,16 @@
     = csrf_meta_tags
   %body
     - if !notice.nil?
-      %p.alert.alert-info= notice
+      .alert.alert-info
+        %button.close{:type => :button, 'data-dismiss' => :alert, 'aria-hidden' => :true}
+          & &times;
+        %p= notice
     -if !alert.nil?
-      %p.alert.alert-warning= alert
+      .alert.alert-warning
+        %button.close{:type => :button, 'data-dismiss' => :alert, 'aria-hidden' => :true}
+          & &times;
+        %p= alert
+
     %nav.navbar.navbar-default.navbar.navbar-fixed-top{:role => :navigation}
       .container-fluid
         .navbar-header
