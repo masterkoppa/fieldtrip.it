@@ -6,9 +6,9 @@ class Employee < ActiveRecord::Base
 
   validate :role_is_a_valid_role
   belongs_to :company
-  has_many :field_trips
   has_many :employee_preferences
   has_and_belongs_to_many :events
+  has_and_belongs_to_many :field_trips
 
   def admin? 
     admin
