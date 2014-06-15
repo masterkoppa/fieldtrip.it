@@ -34,7 +34,7 @@
                 %li
                   = link_to('Create Fieldtrip', new_field_trip_path)
                 %li
-                  %a Manage Users
+                  %a{href:'employees/manage'}Manage Employees
               %li
                 %a= current_employee.email
               %li= link_to('Sign Out', destroy_employee_session_path, :method => :delete)

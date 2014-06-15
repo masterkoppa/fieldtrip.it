@@ -1,0 +1,24 @@
+.container
+
+  %table.table.table-hover.employees-table
+    %thead
+      %tr
+        %th Name
+        %th Email
+        %th Status
+    %tbody#employees
+    - @employees.each do |employee|
+      %tr
+        %td= employee.name
+        %td= employee.email
+        %td
+          - if employee.accepted_invite?
+            %i.fa.fa-check
+            Registered
+          - else
+            %i.fa.fa-times
+            Unregistered
+  %input.invite-email.col-md-2{placeholder: "john@example.com"}
+  %span.col-md-1
+  %input.invite-name.col-md-2{placeholder: "John Smith"}
+  %a.col-md-1.invite-employee.btn Invite

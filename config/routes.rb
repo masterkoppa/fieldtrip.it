@@ -6,6 +6,9 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'home#index'
 
+  get 'employees/manage',     to: 'employees/employees#manage'
+  post 'employees/invite/new', to: 'employees/employees#invite_employee'
+
   resources :field_trips
 
   resource :events
