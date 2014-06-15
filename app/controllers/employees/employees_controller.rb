@@ -10,7 +10,8 @@ class Employees::EmployeesController < ApplicationController
     name = params[:name]
     email = params[:email]
     company_id = current_employee.company.id 
-    Employee.invite!(email: email, name: name, company_id: company_id)
+    invited_by_id = current_employee.id
+    Employee.invite!(email: email, name: name, company_id: company_id, invited_by_id: invited_by_id)
     respond_to do |format|
       format.json { render json: Company.find(company_id).employees.last }
     end
