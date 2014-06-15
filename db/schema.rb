@@ -28,8 +28,8 @@ ActiveRecord::Schema.define(version: 20140615004317) do
   add_index "addresses", ["addressable_type", "addressable_id"], name: "index_addresses_on_addressable_type_and_addressable_id", unique: true
 
   create_table "availabilities", force: true do |t|
-    t.time     "start"
-    t.time     "end"
+    t.datetime "start"
+    t.datetime "end"
     t.integer  "employee_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -98,8 +98,8 @@ ActiveRecord::Schema.define(version: 20140615004317) do
   create_table "field_trips", force: true do |t|
     t.string   "name"
     t.string   "description"
-    t.time     "start_time"
-    t.time     "end_time"
+    t.datetime "start_time"
+    t.datetime "end_time"
     t.integer  "company_id"
     t.datetime "created_at"
     t.datetime "updated_at"
