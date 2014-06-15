@@ -10,6 +10,10 @@
     %br/
     = f.text_field :phone
   %div
+    = f.label :role
+    %br/
+    = f.select(:role, EMPLOYEE_ROLES.collect {|r| [r, r]} , {include_blank: ''})
+  %div
     = f.label :email
     %br/
     = f.email_field :email

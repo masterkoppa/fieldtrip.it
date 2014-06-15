@@ -1,6 +1,25 @@
+%h2 Welcome back #{current_employee.name}!
+%p
+  Here are your upcomming events:
+  %table.table.table-hover
+    %thead
+      %tr
+        %th Name
+        %th Date
+        %th Status
+    %tbody
+    - @field_trips.each do |field_trip|
+      %tr
+        %td= field_trip.name
+        %td= field_trip.time
+        %td
+          - if field_trip.attending?
+            %i.fa.fa-check
+            Going
+          - elsif field_trip.unconfirmed?
+            %i.fa.fa-question
+            Don't know
+          - else
+            %i.fa.fa-times
+            Don't know
 
-
-
-
-.container
-  Hello, world!

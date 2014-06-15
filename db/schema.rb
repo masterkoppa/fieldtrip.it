@@ -30,7 +30,7 @@ ActiveRecord::Schema.define(version: 20140615004317) do
   create_table "availabilities", force: true do |t|
     t.time     "start"
     t.time     "end"
-    t.integer  "employees_id"
+    t.integer  "employee_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -45,18 +45,18 @@ ActiveRecord::Schema.define(version: 20140615004317) do
 
   create_table "employee_events", force: true do |t|
     t.boolean "attending"
-    t.integer "employees_id"
-    t.integer "events_id"
+    t.integer "employee_id"
+    t.integer "event_id"
   end
 
   create_table "employee_field_trips", force: true do |t|
-    t.integer "employees_id"
-    t.integer "field_trips_id"
+    t.integer "employee_id"
+    t.integer "field_trip_id"
   end
 
   create_table "employee_preferences", force: true do |t|
     t.boolean  "preference"
-    t.integer  "events_id"
+    t.integer  "event_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -64,7 +64,7 @@ ActiveRecord::Schema.define(version: 20140615004317) do
   create_table "employees", force: true do |t|
     t.string   "name"
     t.string   "phone"
-    t.integer  "companies_id"
+    t.integer  "company_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "email",                  default: "", null: false
@@ -88,7 +88,7 @@ ActiveRecord::Schema.define(version: 20140615004317) do
     t.string   "name"
     t.string   "description"
     t.integer  "capacity"
-    t.integer  "field_trips_id"
+    t.integer  "field_trip_id"
     t.string   "type"
     t.integer  "type_id"
     t.datetime "created_at"
@@ -100,7 +100,7 @@ ActiveRecord::Schema.define(version: 20140615004317) do
     t.string   "description"
     t.time     "start_time"
     t.time     "end_time"
-    t.integer  "companies_id"
+    t.integer  "company_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
