@@ -12,7 +12,7 @@
         %tbody
         - @field_trips.each do |field_trip|
           %tr
-            %td= link_to(field_trip.name, new_field_trip_path)
+            %td= link_to(field_trip.name, field_trip_path(field_trip))
             %td= field_trip.start_time
             %td
               Don't know what to do
