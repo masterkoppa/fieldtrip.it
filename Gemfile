@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 gem 'bootstrap-sass'
 gem 'bootswatch-rails'
+gem 'font-awesome-sass'
 gem 'coffee-rails', '~> 4.0.0'
 gem 'devise'
 gem 'haml'
