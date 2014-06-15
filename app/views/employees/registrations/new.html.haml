@@ -44,28 +44,7 @@
           = ff.label :phone
           %br/
           = ff.text_field :phone
-    
-        %h4 Company Address
-        = ff.fields_for @address, url: {action: "create"}, html: {class: "address_form"} do |fff|
-          %div
-            = fff.label :line1
-            %br/
-            = fff.text_field :line1
-          %div
-            = fff.label :line2
-            %br/
-            = fff.text_field :line2
-          %div
-            = fff.label :city
-            %br/
-            = fff.text_field :city
-          %div
-            = fff.label :state
-            %br/
-            = fff.text_field :state
-          %div
-            = fff.label :zip
-            %br/
-            = fff.text_field :zip
+        = render partial: 'shared/address_fields', locals: {title: "Company Address", parent_form: ff}    
+
 
 = render "employees/shared/links"
