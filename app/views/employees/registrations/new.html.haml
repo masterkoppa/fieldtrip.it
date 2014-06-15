@@ -2,70 +2,61 @@
 = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
   = devise_error_messages!
   .container-fluid.row
-    .col-md-6
+    .col-md-4
       %h3 Employee
-      %div
+      .form-group
         = f.label :name
-        %br/
-        = f.text_field :name, autofocus: true
-      %div
+        = f.text_field :name, autofocus: true, class: 'form-control'
+      .form-group
         = f.label :phone
-        %br/
-        = f.text_field :phone
-      %div
+        = f.text_field :phone, class: 'form-control'
+      .form-group
         = f.label :role
-        %br/
-        = f.select(:role, EMPLOYEE_ROLES.collect {|r| [r, r]} , {include_blank: ''})
-      %div
+        = f.select(:role, EMPLOYEE_ROLES.collect {|r| [r, r]} , {include_blank: ''}, {:class => 'form-control'})
+      .form-group
         = f.label :email
-        %br/
-        = f.email_field :email
-      %div
+        = f.email_field :email, class: 'form-control'
+      .form-group
         = f.label :password
-        %br/
-        = f.password_field :password, autocomplete: "off"
-      %div
+        = f.password_field :password, autocomplete: "off", class: 'form-control'
+      .form-group
         = f.label :password_confirmation
-        %br/
-        = f.password_field :password_confirmation, autocomplete: "off"
-      %div= f.submit "Sign up"
-    .col-md-6
+        = f.password_field :password_confirmation, autocomplete: "off", class: 'form-control'
+
+    .col-md-2
+    .col-md-4
       %h3 Company
       = fields_for @company, url: {action: "create"}, html: {class: "company_form"} do |ff|
-        %div
+        .form-group
           = ff.label :name
-          %br/
-          = ff.text_field :name
-        %div
+          = ff.text_field :name, class: 'form-control'
+        .form-group
           = ff.label :email
-          %br/
-          = ff.email_field :email
-        %div
+          = ff.email_field :email, class: 'form-control'
+        .form-group
           = ff.label :phone
-          %br/
-          = ff.text_field :phone
+          = ff.text_field :phone, class: 'form-control'
     
         %h4 Company Address
         = ff.fields_for @address, url: {action: "create"}, html: {class: "address_form"} do |fff|
-          %div
+          .form-group
             = fff.label :line1
-            %br/
-            = fff.text_field :line1
-          %div
+            = fff.text_field :line1, class: 'form-control'
+          .form-group
             = fff.label :line2
-            %br/
-            = fff.text_field :line2
-          %div
+            = fff.text_field :line2, class: 'form-control'
+          .form-group
             = fff.label :city
-            %br/
-            = fff.text_field :city
-          %div
+            = fff.text_field :city, class: 'form-control'
+          .form-group
             = fff.label :state
-            %br/
-            = fff.text_field :state
-          %div
+            = fff.text_field :state, class: 'form-control'
+          .form-group
             = fff.label :zip
-            %br/
-            = fff.text_field :zip
-
+            = fff.text_field :zip, class: 'form-control'
+  %br
+  %div= f.submit "Sign up", class: 'btn btn-primary pull-left col-xs-12 col-md-2'
+%br
+%br
+%br
 = render "employees/shared/links"
