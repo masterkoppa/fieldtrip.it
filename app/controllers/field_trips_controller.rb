@@ -70,6 +70,6 @@ class FieldTripsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def field_trip_params
-      params[:field_trip]
+      params.require(:field_trip).permit(:name, :description, :start_time, :end_time, :company_id)
     end
 end
