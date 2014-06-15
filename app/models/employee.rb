@@ -5,6 +5,9 @@ class Employee < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   validate :role_is_a_valid_role
+  belongs_to :company
+  has_many :events
+  has_many :field_trips
 
   def admin? 
     admin
