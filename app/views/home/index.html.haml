@@ -10,7 +10,7 @@
     %tbody
     - @field_trips.each do |field_trip|
       %tr
-        %td= field_trip.name
+        %td= link_to(field_trip.name, new_field_trip_path)
         %td= field_trip.time
         %td
           - if field_trip.attending?

@@ -19,13 +19,26 @@
 
     %nav.navbar.navbar-default.navbar.navbar-fixed-top{:role => :navigation}
       .container-fluid
-        .navbar-header= link_to('Fieldtrip.it', root_path, :class=> 'navbar-brand')
+        .navbar-header
+          = link_to('Fieldtrip.it', root_path, :class=> 'navbar-brand')
+          %button.navbar-toggle{:type => :button, 'data-toggle' => :collapse, 'data-target' => '#user-nav'}
+            %span.sr-only
+              Toggle Navigation
+            %span.icon-bar
+            %span.icon-bar
+            %span.icon-bar
         - if employee_signed_in?
-          %ul.nav.navbar-nav.navbar-right
-            %li
-              %a= current_employee.email
-            %li= link_to('Sign Out', destroy_employee_session_path, :method => :delete)
+          .collapse.navbar-collapse#user-nav
+            %ul.nav.navbar-nav.navbar-right
+              -if current_employee.admin
+                %li
+                  = link_to('Create Fieldtrip', new_field_trip_path)
+                %li
+                  %a Manage Users
+              %li
+                %a= current_employee.email
+              %li= link_to('Sign Out', destroy_employee_session_path, :method => :delete)
     .col-md-2
-    .col-md-8
+    .col-md-8.col-sm-12
       = yield
     .col-md-2
