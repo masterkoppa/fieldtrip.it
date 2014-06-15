@@ -31,7 +31,7 @@ class EventsController < ApplicationController
 
     type, sub_event = detect_and_build_type(params)
 
-    @event.set_sub_event sub_event
+    @event.set_sub_event type, sub_event
 
     @field_trip = FieldTrip.find_by_id(@event.field_trip_id)
 

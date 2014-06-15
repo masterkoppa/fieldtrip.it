@@ -9,4 +9,8 @@ class Restaurant
     ["Open Table", "Yelp", "Phone"]
   end
 
+  def to_hash
+    {:reservation_type => @reservation_type, :url => @url}
+  end
+
 end

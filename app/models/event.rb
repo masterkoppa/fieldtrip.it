@@ -3,17 +3,28 @@ class Event < ActiveRecord::Base
   has_many :employees
   accepts_nested_attributes_for :address
 
-  def set_sub_event(sub_event)
-    self.sub_event = sub_event.to_json.to_s
+  def save_sub_event_object(sub_event_object)
+    type = sub_event_object.class.name
+    contents = sub_event_object.to_hash
+    set_sub_event!(type, contents)
   end
 
-  def set_sub_event!(sub_event)
-    set_sub_event(sub_event)
+  def set_sub_event(type, sub_event)
+    self.sub_event = {:type => type, :contents => sub_event}.to_json.to_s
+  end
+
+  def set_sub_event!(type, sub_event)
+    set_sub_event(type, sub_event)
     self.save!
   end
 
   def get_sub_event
-    # TODO Add changing to a actual temp model
-    JSON.parse(self.sub_event)
+    temp = JSON.parse(self.sub_event)
+    type = temp["type"]
+    contents = temp["contents"].symbolize_keys!
+
+    new_sub_event = type.constantize.new contents
+
+    new_sub_event
   end
 end
