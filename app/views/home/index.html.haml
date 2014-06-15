@@ -1,25 +1,28 @@
 %h2 Welcome back #{current_employee.name}!
-%p
-  Here are your upcomming events:
-  %table.table.table-hover
-    %thead
-      %tr
-        %th Name
-        %th Date
-        %th Status
-    %tbody
-    - @field_trips.each do |field_trip|
-      %tr
-        %td= link_to(field_trip.name, new_field_trip_path)
-        %td= field_trip.time
-        %td
-          - if field_trip.attending?
-            %i.fa.fa-check
-            Going
-          - elsif field_trip.unconfirmed?
-            %i.fa.fa-question
-            Don't know
-          - else
-            %i.fa.fa-times
-            Don't know
-
+.well
+  - if !@field_trips.empty?
+    %p
+      Here are your upcomming field trips:
+      %table.table.table-hover
+        %thead
+          %tr
+            %th Name
+            %th Date
+            %th Status
+        %tbody
+        - @field_trips.each do |field_trip|
+          %tr
+            %td= link_to(field_trip.name, new_field_trip_path)
+            %td= field_trip.start_time
+            %td
+              - if field_trip.attending?(current_employee)
+                %i.fa.fa-check
+                Going
+              - elsif field_trip.unconfirmed?(current_employee)
+                %i.fa.fa-question
+                Don't know
+              - else
+                %i.fa.fa-times
+                Don't know
+  -else
+    %h4.text-center No fieldtrips planned yet

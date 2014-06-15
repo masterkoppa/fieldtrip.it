@@ -15,7 +15,7 @@
             %td= event.name
             %td= event.description
             %td Am I going?
-%button.btn.btn-success#create_event{'data-toggle' => 'modal', 'data-target' => '#newEvent'}
+%button.btn.btn-success.pull-right#create_event{'data-toggle' => 'modal', 'data-target' => '#newEvent'}
   Add new event
 
 .modal.fade#newEvent{:tabindex => -1, :role => :dialog, 'aria-labelledby' => 'modalTitle', 'aria-hidden' => true}
