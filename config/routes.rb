@@ -8,6 +8,8 @@ Rails.application.routes.draw do
 
   get 'employees/manage',     to: 'employees/employees#manage'
   post 'employees/invite/new', to: 'employees/employees#invite_employee'
+  post 'twilio/confirm', to: 'twilio#confirm'
+  post 'twilio/dispatch', to: 'twilio#dispatch'
 
   resources :field_trips
 

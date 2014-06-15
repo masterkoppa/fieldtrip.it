@@ -1,6 +1,7 @@
 class Event < ActiveRecord::Base
   has_one :address, :as => :addressable
   has_many :employees
+  has_many :employee_preferences
   accepts_nested_attributes_for :address
 
   def save_sub_event_object(sub_event_object)
