@@ -15,3 +15,10 @@
 //= require turbolinks
 //= require bootstrap
 //= require_tree .
+
+// Can't get this to work in coffee script... :(
+$('body').ready(function(){
+    $('#event_submit').on('click', function() {
+        return $('#event_form>form').submit();
+    });
+})
