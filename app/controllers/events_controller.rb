@@ -27,12 +27,20 @@ class EventsController < ApplicationController
   def create
     @event = Event.new(event_params)
 
+    #Check for the active type and build it
+
+    type, sub_event = detect_and_build_type(params)
+
+    @event.set_sub_event sub_event
+
+    @field_trip = FieldTrip.find_by_id(@event.field_trip_id)
+
     respond_to do |format|
       if @event.save
-        format.html { redirect_to @event, notice: 'Event was successfully created.' }
+        format.html { redirect_to @field_trip, notice: 'Event was successfully created.' }
         format.json { render :show, status: :created, location: @event }
       else
-        format.html { render :new }
+        format.html { redirect_to @field_trip }
         format.json { render json: @event.errors, status: :unprocessable_entity }
       end
     end
@@ -70,6 +78,21 @@ class EventsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def event_params
-      params[:event]
+      params.require(:event).permit(:name, :description, :capacity, :field_trip_id)
     end
+
+    def detect_and_build_type(params)
+      res_params = params[:event]
+      if('restaurant'.in? params)
+        restaurant = Restaurant.new
+        restaurant[:reservation_type] = res_params[:reservation_type]
+        restaurant[:url] = res_params[:url]
+        restaurant[:event_id] = @event.id
+
+        if restaurant.valid?
+          return ["Restaurant", restaurant]
+        end
+      end
+    end
+
 end

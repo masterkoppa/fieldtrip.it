@@ -1,23 +1,18 @@
 - if title
   %h4= title
 = parent_form.fields_for @address, url: {action: "create"}, html: {class: "address_form"} do |ff|
-  %div
+  .form-group
     = ff.label :line1
-    %br/
-    = ff.text_field :line1
-  %div
+    = ff.text_field :line1, class: 'form-control'
+  .form-group
     = ff.label :line2
-    %br/
-    = ff.text_field :line2
-  %div
+    = ff.text_field :line2, class: 'form-control'
+  .form-group
     = ff.label :city
-    %br/
-    = ff.text_field :city
-  %div
+    = ff.text_field :city, class: 'form-control'
+  .form-group
     = ff.label :state
-    %br/
-    = ff.text_field :state
-  %div
+    = ff.text_field :state, class: 'form-control'
+  .form-group
     = ff.label :zip
-    %br/
-    = ff.text_field :zip
+    = ff.text_field :zip, class: 'form-control'

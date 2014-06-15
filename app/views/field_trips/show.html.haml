@@ -13,28 +13,52 @@
         %h4.modal-title#modalTitle Create New Event
       .modal-body
         #event_form
-          = render partial: 'events/form', locals: {event: Event.new}
-          .type-selector
-            .dropdown
-              %a.dropdown-toggle#type_label{:href => '#', 'data-toggle' => 'dropdown'}
-                Event Type
-                %b.caret
-              %ul.dropdown-menu{'aria-labeled-by' => 'type_label', :role => :menu}
-                %li
-                  %a{:href => '#restaurant_form', :tabindex => -1, 'data-toggle' => 'tab'}
-                    Restaurant
-                %li
-                  %a{:href => '#other_form', :tabindex => -1, 'data-toggle' => 'tab'}
-                    Other Event
-          %hr
-          .tab-content
-            #other_form.tab-pane.fade
-              Other forms
-            #restaurant_form.tab-pane.fade
-              = render partial: 'event_types/restaurant_form', locals: {restaurant: Restaurant.new}
+          - event = Event.new
+          = form_for(event, remote: false) do |f|
+            - if event.errors.any?
+              #error_explanation
+                %h2
+                  = pluralize(event.errors.count, "error")
+                  prohibited this event from being saved:
+                %ul
+                  - event.errors.full_messages.each do |message|
+                    %li= message
+            .form-group
+              = f.label :name
+              = f.text_field :name, class: 'form-control'
+            .form-group
+              = f.label :description
+              = f.text_area :description, rows: 3, class: 'form-control'
+            .form-group
+              = f.label :capacity
+              = f.number_field :capacity, class: 'form-control', value: 5
+              = f.hidden_field :field_trip_id, :value => @field_trip.id
+            .type-selector
+              .dropdown
+                %button.dropdown-toggle#type_label{ 'data-toggle' => 'dropdown'}
+                  Event Type
+                  %b.caret
+                %ul.dropdown-menu{'aria-labeled-by' => 'type_label', :role => :menu}
+                  %li
+                    %a{:href => '#restaurant_form', :tabindex => -1, 'data-toggle' => 'tab'}
+                      Restaurant
+                  %li
+                    %a{:href => '#other_form', :tabindex => -1, 'data-toggle' => 'tab'}
+                      Other Event
+            %hr
+            .tab-content
+              #other_form.tab-pane.fade
+                Other forms
+              #restaurant_form.tab-pane.fade
+                .form-group
+                  = f.label :reservation_type
+                  = select :event, :reservation_type, Restaurant.getReservationTypes.collect { |r| [r,r] }, {}, {:class => 'form-control'}
+                .form-group
+                  = f.label :url
+                  = text_field :event, :url, class: 'form-control'
       .modal-footer
         %button.btn.btn-default{:type => :button, 'data-dismiss' => 'modal'} Close
-        %button.btn.btn-primary{:type => :button}
+        %button.btn.btn-primary#event_submit{:type => :button, :disabled => false}
           Save
 
 = link_to 'Edit', edit_field_trip_path(@field_trip)
