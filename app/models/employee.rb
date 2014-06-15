@@ -23,7 +23,7 @@ class Employee < ActiveRecord::Base
   end
 
   def not_attending!(field_trip)
-    employee_field_trips.find {|trip| trip.field_trip == field_trip}.attending = false
+    employees_field_trips.find {|trip| trip.field_trip == field_trip}.attending = false
   end
 
   def prefer(event_id)
