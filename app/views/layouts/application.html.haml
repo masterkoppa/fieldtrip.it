@@ -19,12 +19,13 @@
 
     %nav.navbar.navbar-default.navbar.navbar-fixed-top{:role => :navigation}
       .container-fluid
-        .navbar-header
-          %a.navbar-brand
-            Fieldtrip.it
+        .navbar-header= link_to('Fieldtrip.it', root_path, :class=> 'navbar-brand')
         - if employee_signed_in?
           %ul.nav.navbar-nav.navbar-right
             %li
               %a= current_employee.email
             %li= link_to('Sign Out', destroy_employee_session_path, :method => :delete)
-    = yield
+    .col-md-2
+    .col-md-8
+      = yield
+    .col-md-2
