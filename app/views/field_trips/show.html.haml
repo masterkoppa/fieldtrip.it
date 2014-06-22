@@ -1,4 +1,5 @@
 %h2= "#{@field_trip.name} Event Planning"
+= link_to "Send Notifications", "/dispatch/notify", action: "POST", data: {field_trip: @field_trip}
 .well
   - if @events.empty?
     %p You don't have any events added yet, go ahead and create some!

@@ -1,6 +1,6 @@
-class TwilioController < ApplicationController
+class DispatchController < ApplicationController
 
-  def dispatch(field_trip)
+  def notify
     events = []
     client = Twilio::REST::Client.new(ENV['TWILIO_SID'], ENV['TWILIO_TOKEN'])
 
@@ -21,6 +21,12 @@ class TwilioController < ApplicationController
   def confirm
     get_employee
     puts "*"*10000
+    client = Twilio::REST::Client.new(ENV['TWILIO_SID'], ENV['TWILIO_TOKEN'])
+    client.account.sms.messages.create(
+      from: ENV['TWILIO_FROM'],
+      to:   "3152378524",
+      body: "Confirmation recieved from someone's phone!")
+
     events = @employee.current_trip.events
     body = params['Body']
     if body =~ /0.{0,1}/
