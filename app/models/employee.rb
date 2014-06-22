@@ -7,10 +7,10 @@ class Employee < ActiveRecord::Base
   validate :role_is_a_valid_role
   belongs_to :company
   has_many :employee_preferences
-  has_many :employees_events
-  has_many :events, through: :employees_events
-  has_many :employees_field_trips
-  has_many :field_trips, through: :employees_field_trips
+  has_many :employee_events
+  has_many :events, through: :employee_events
+  has_many :employee_field_trips
+  has_many :field_trips, through: :employee_field_trips
 
   def admin? 
     admin
