@@ -17,6 +17,7 @@ class DispatchController < ApplicationController
         to:   employee.phone,
         body: "Today's options (reply with number of your preference)\n #{events}")
     end
+    redirect_to field_trip_path(field_trip)
   end
 
   def confirm
