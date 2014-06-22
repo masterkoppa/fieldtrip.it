@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   get 'employees/manage',     to: 'employees/employees#manage'
   post 'employees/invite/new', to: 'employees/employees#invite_employee'
   post 'dispatch/confirm', to: 'dispatch#confirm'
-  post 'dispatch/notify', to: 'dispatch#notify'
+  post 'dispatch/notify', to: 'dispatch#notify', as: 'notify_employees'
   get 'dispatch/notify', to: 'dispatch#notify'
 
   resources :field_trips

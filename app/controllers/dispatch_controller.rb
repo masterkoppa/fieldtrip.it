@@ -2,8 +2,9 @@ class DispatchController < ApplicationController
 
   def notify
     events = []
+    field_trip = FieldTrip.find(params[:field_trip_id])
     client = Twilio::REST::Client.new(ENV['TWILIO_SID'], ENV['TWILIO_TOKEN'])
-
+    
     events << "0. I'm Staying in"
     field_trip.events.each_with_index do |event, index|
       events << "#{index+1}. #{event.name}"
