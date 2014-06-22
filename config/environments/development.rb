@@ -35,7 +35,4 @@ Rails.application.configure do
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
   config.action_mailer.default_url_options = { host: 'localhost:3000' }
-  ENV['TWILIO_SID']='AC3a7efbc432fe10c5dba1ce7b77fb7600'
-  ENV['TWILIO_TOKEN']='3dfd48e1c657ade61b44e28b7879e895'
-  ENV['TWILIO_FROM']='14152376131'
 end
