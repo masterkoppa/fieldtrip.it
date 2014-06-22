@@ -43,6 +43,18 @@ ActiveRecord::Schema.define(version: 20140615214956) do
     t.datetime "updated_at"
   end
 
+  create_table "employee_events", force: true do |t|
+    t.boolean "attending"
+    t.integer "employee_id"
+    t.integer "event_id"
+  end
+
+  create_table "employee_field_trips", force: true do |t|
+    t.integer "employee_id"
+    t.integer "field_trip_id"
+    t.boolean "attending"
+  end
+
   create_table "employee_preferences", force: true do |t|
     t.boolean  "preference"
     t.integer  "event_id"
@@ -84,18 +96,6 @@ ActiveRecord::Schema.define(version: 20140615214956) do
   add_index "employees", ["invitations_count"], name: "index_employees_on_invitations_count"
   add_index "employees", ["invited_by_id"], name: "index_employees_on_invited_by_id"
   add_index "employees", ["reset_password_token"], name: "index_employees_on_reset_password_token", unique: true
-
-  create_table "employees_events", force: true do |t|
-    t.boolean "attending"
-    t.integer "employee_id"
-    t.integer "event_id"
-  end
-
-  create_table "employees_field_trips", force: true do |t|
-    t.integer "employee_id"
-    t.integer "field_trip_id"
-    t.boolean "attending"
-  end
 
   create_table "events", force: true do |t|
     t.string   "name"
