@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   post 'dispatch/confirm', to: 'dispatch#confirm'
   post 'dispatch/notify', to: 'dispatch#notify', as: 'notify_employees'
   get 'dispatch/notify', to: 'dispatch#notify'
+  get 'dispatch/set_groups', to: 'dispatch#set_groups', as: 'set_groups'
 
   resources :field_trips
 
