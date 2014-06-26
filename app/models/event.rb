@@ -1,9 +1,20 @@
 class Event < ActiveRecord::Base
+  after_create :create_group
   has_one :address, :as => :addressable
+  has_one :group
   has_many :employee_preferences
   has_many :employee_events
-  has_many :employees, through: :employees_events
+  has_many :employees, through: :employee_events
+  belongs_to :field_trip
   accepts_nested_attributes_for :address
+
+  def create_group
+    self.group = Group.create()
+  end
+
+  def full?
+    group.employees.size >= capacity
+  end
 
   def save_sub_event_object(sub_event_object)
     type = sub_event_object.class.name
