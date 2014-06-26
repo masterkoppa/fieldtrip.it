@@ -12,6 +12,12 @@ class FieldTripsController < ApplicationController
   # GET /field_trips/1.json
   def show
     @events = @field_trip.events
+
+    @participating_employees = []
+    @field_trip.employees.each do |employee|
+      attending = employee.employee_field_trips.find_by(field_trip_id: @field_trip.id).responded
+      @participating_employees << [employee.name, employee.phone, attending]
+    end
   end
 
   # GET /field_trips/new
