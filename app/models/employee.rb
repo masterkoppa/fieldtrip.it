@@ -9,11 +9,16 @@ class Employee < ActiveRecord::Base
   has_many :employee_preferences
   has_many :employee_events
   has_many :events, through: :employee_events
+  has_and_belongs_to_many :groups
   has_many :employee_field_trips
   has_many :field_trips, through: :employee_field_trips
 
   def admin? 
     admin
+  end
+
+  def respond_to(field_trip)
+    employee_field_trips.find_by(field_trip_id: field_trip.id).respond
   end
 
   def accepted_invite?
@@ -28,8 +33,8 @@ class Employee < ActiveRecord::Base
     employees_field_trips.find {|trip| trip.field_trip == field_trip}.attending = false
   end
 
-  def prefer(event_id)
-    employee_preferences << EmployeePreference.create(employee_id: id, event_id: event_id, preference: true)
+  def prefer(event)
+    employee_preferences << EmployeePreference.create(employee_id: id, event_id: event.id, preference: true)
   end
 
   # validations
