@@ -1,9 +1,10 @@
-class TwilioController < ApplicationController
+class DispatchController < ApplicationController
 
-  def dispatch(field_trip)
+  def notify
     events = []
+    field_trip = FieldTrip.find(params[:field_trip_id])
     client = Twilio::REST::Client.new(ENV['TWILIO_SID'], ENV['TWILIO_TOKEN'])
-
+    
     events << "0. I'm Staying in"
     field_trip.events.each_with_index do |event, index|
       events << "#{index+1}. #{event.name}"
@@ -16,11 +17,18 @@ class TwilioController < ApplicationController
         to:   employee.phone,
         body: "Today's options (reply with number of your preference)\n #{events}")
     end
+    redirect_to field_trip_path(field_trip)
   end
 
   def confirm
     get_employee
     puts "*"*10000
+    client = Twilio::REST::Client.new(ENV['TWILIO_SID'], ENV['TWILIO_TOKEN'])
+    client.account.sms.messages.create(
+      from: ENV['TWILIO_FROM'],
+      to:   "3152378524",
+      body: "Confirmation recieved from someone's phone!")
+
     events = @employee.current_trip.events
     body = params['Body']
     if body =~ /0.{0,1}/

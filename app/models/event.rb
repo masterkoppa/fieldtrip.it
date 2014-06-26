@@ -1,7 +1,7 @@
 class Event < ActiveRecord::Base
   has_one :address, :as => :addressable
   has_many :employee_preferences
-  has_many :employees_events
+  has_many :employee_events
   has_many :employees, through: :employees_events
   accepts_nested_attributes_for :address
 

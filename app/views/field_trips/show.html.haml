@@ -1,4 +1,5 @@
 %h2= "#{@field_trip.name} Event Planning"
+= link_to "Send Notifications", notify_employees_path(field_trip_id: @field_trip.id), remote: true
 .well
   - if @events.empty?
     %p You don't have any events added yet, go ahead and create some!
