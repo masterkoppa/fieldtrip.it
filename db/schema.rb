@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140615214956) do
+ActiveRecord::Schema.define(version: 20140625053838) do
 
   create_table "addresses", force: true do |t|
     t.string   "line1"
@@ -53,6 +53,7 @@ ActiveRecord::Schema.define(version: 20140615214956) do
     t.integer "employee_id"
     t.integer "field_trip_id"
     t.boolean "attending"
+    t.boolean "responded"
   end
 
   create_table "employee_preferences", force: true do |t|
@@ -97,6 +98,11 @@ ActiveRecord::Schema.define(version: 20140615214956) do
   add_index "employees", ["invited_by_id"], name: "index_employees_on_invited_by_id"
   add_index "employees", ["reset_password_token"], name: "index_employees_on_reset_password_token", unique: true
 
+  create_table "employees_groups", force: true do |t|
+    t.integer "employee_id"
+    t.integer "group_id"
+  end
+
   create_table "events", force: true do |t|
     t.string   "name"
     t.string   "description"
@@ -115,6 +121,11 @@ ActiveRecord::Schema.define(version: 20140615214956) do
     t.integer  "company_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "groups", force: true do |t|
+    t.integer "event_id"
+    t.integer "field_trip_id"
   end
 
 end
