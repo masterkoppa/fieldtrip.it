@@ -4,14 +4,19 @@ class Employee < ActiveRecord::Base
   devise :invitable, :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  before_validation :format_phone_number
+  
   validate :role_is_a_valid_role
+  
   belongs_to :company
+  
   has_many :employee_preferences
   has_many :employee_events
   has_many :events, through: :employee_events
-  has_and_belongs_to_many :groups
   has_many :employee_field_trips
   has_many :field_trips, through: :employee_field_trips
+
+  has_and_belongs_to_many :groups
 
   def admin? 
     admin
@@ -37,7 +42,12 @@ class Employee < ActiveRecord::Base
     employee_preferences << EmployeePreference.create(employee_id: id, event_id: event.id, preference: true)
   end
 
-  # validations
+  ### Callbacks ###
+  def format_phone_number
+    phone.gsub!(/[^0-9x]/,"") if phone.present?
+  end
+
+  ### Validations ###
   def role_is_a_valid_role
     unless role.in? EMPLOYEE_ROLES
       errors.add(:role, "Role must be a valid role.")
